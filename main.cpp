@@ -5,7 +5,6 @@ using namespace std;
 #pragma warning(disable:4996)
 
 
-
 int main()
 {
 	char name[Person::NAME_MAX];
@@ -23,12 +22,7 @@ int main()
 	cout << "Enter the index you want (between 1-n)" << endl;
 	cin >> index;
 	RandSelection(p_Arr, index, numofperson, numComp);
-	cout << numComp;
-	for (int i = 0; i < numofperson; i++)
-	{
-		delete p_Arr[i];
-	}
-	delete[] p_Arr;
+
 
 
 }

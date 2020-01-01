@@ -1,12 +1,13 @@
 #include "General.h"
 #include "Person.h"
 #include <stdlib.h>  
-
+#include <ctime>
 int Partition(Person * p_Arr[], int low, int high)
 {
-	int randIndex = rand() % high;
+	srand((time(0)));
+	int randIndex = rand() % (high - low + 1) + low;
 	Person pivot(*p_Arr[randIndex]);
-	int i = low-1;
+	int i = low - 1;
 	for (int j = low; j <= high - 1; j++)
 	{
 		// If current element is smaller than the pivot
@@ -50,6 +51,6 @@ const Person & Select(Person * p_Arr[], int left, int right, int & NumComp, int 
 	else
 	{
 		NumComp++;
-		return Select(p_Arr, pivot + 1, right,NumComp,k - leftPart);
+		return Select(p_Arr, pivot + 1, right, NumComp, k - leftPart);
 	}
 }
