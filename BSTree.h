@@ -1,8 +1,8 @@
 #ifndef BSTree__H
 #define BSTree__H
-
+#include "BSTreeNode.h"
 typedef int Type;
-class BSTreeNode;
+class Person;
 
 class BSTree {
 private:
@@ -12,7 +12,7 @@ public:
 	BSTree(BSTreeNode * root) { this->root = root; };
 	~BSTree() { delete this->root; };
 	BSTreeNode * Find(Type item);
-	void Insert(int key , int data);
+	void Insert(KeyType key , DataType data);
 	void Delete(Type item);
 	void makeEmpty(BSTreeNode * root);
 	bool isEmpty();
@@ -20,6 +20,8 @@ public:
 	Type Min();
 	BSTreeNode* Max();
 	void PrintTree();
+	BSTreeNode * getRoot() const;
+	BSTreeNode * FindK(BSTreeNode * node, int k);
 	friend class BSTreeNode;
 };
 #endif // !BSTree_H

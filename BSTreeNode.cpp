@@ -1,18 +1,31 @@
 #include "BSTreeNode.h"
 
 
-BSTreeNode::BSTreeNode(KeyType key, DataType data, BSTreeNode * left, BSTreeNode * right)
+
+
+BSTreeNode::BSTreeNode(KeyType key, DataType data, int numOfSons, BSTreeNode * left, BSTreeNode * right)
 {
 	this->key = key;
 	this->data = data;
 	this->left = left;
 	this->right = right;
+	this->numOfSons = numOfSons;
 }
 
 BSTreeNode::~BSTreeNode()
 {
 	delete this->left;
 	delete this->right;
+}
+
+const KeyType BSTreeNode::getKey() const
+{
+	return this->key;
+}
+
+DataType BSTreeNode::getData() const
+{
+	return this->getData();
 }
 
 void BSTreeNode::inorder()

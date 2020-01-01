@@ -21,7 +21,8 @@ int main()
 	}
 	cout << "Enter the index you want (between 1-n)" << endl;
 	cin >> index;
-	RandSelection(p_Arr, index, numofperson, numComp);
+	//RandSelection(p_Arr, index, numofperson, numComp);
+	BST(p_Arr, index, numofperson, numComp);
 
 
 

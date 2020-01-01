@@ -13,8 +13,10 @@ public:
 	Person(Person & other);
 	~Person();
 	const int getID() const;
+	char * getName() const;
 	void setID(const int id);
 	void setName(const char * name);
+
 
 };
 #endif // !PERSON_H

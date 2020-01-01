@@ -1,7 +1,10 @@
 #include "General.h"
 #include "Person.h"
+#include "BSTree.h"
+#include "BSTreeNode.h"
 #include <stdlib.h>  
 #include <ctime>
+#pragma warning (disable:4996)
 int Partition(Person * p_Arr[], int low, int high)
 {
 	srand((time(0)));
@@ -54,3 +57,19 @@ const Person & Select(Person * p_Arr[], int left, int right, int & NumComp, int 
 		return Select(p_Arr, pivot + 1, right, NumComp, k - leftPart);
 	}
 }
+
+const Person & BST(Person * p_Arr[], int k,int n, int & NumComp)
+{
+	//this function creates a BST from the person array, and finds the K'th number size (by id)
+	//creating the tree from the given array:
+	BSTree tr;
+	for (int i = 0; i < n; i++)
+	{
+		tr.Insert(p_Arr[i]->getID(), p_Arr[i]->getName());
+	}
+	BSTreeNode * node = tr.FindK(tr.getRoot(), k);
+
+}
+
+
+

@@ -23,6 +23,11 @@ const int Person::getID() const
 	return this->p_ID;
 }
 
+char * Person::getName() const
+{
+	return this->p_name;
+}
+
 void Person::setID(const int id)
 {
 	this->p_ID = id;

@@ -15,7 +15,7 @@ BSTreeNode * BSTree::Find(Type item)
 	return nullptr;
 }
 
-void BSTree::Insert(int key, int data)
+void BSTree::Insert(KeyType key, DataType data)
 {
 	if (this->Find(key) != nullptr)
 	{
@@ -29,16 +29,21 @@ void BSTree::Insert(int key, int data)
 	while (temp != nullptr)
 	{
 		parent = temp;
+		parent->numOfSons++;
 		if (key < temp->key)
+		{
 			temp = temp->left;
+		}
 		else
 			temp = temp->right;
 	}
-	newnode = new BSTreeNode(key, data, nullptr, nullptr);
+	newnode = new BSTreeNode(key, data, 0,nullptr, nullptr);
 	if (parent == nullptr) // insert newnode as root
 		this->root = newnode;
 	else if (key < parent->key)
+	{
 		parent->left = (newnode); //insert newnode as left child
+	}
 	else
 		parent->right = (newnode); // insert newnode as right child
 }
@@ -137,7 +142,7 @@ BSTreeNode * BSTree::parentFind(Type item)
 Type BSTree::Min()
 { //return the minimum value in the tree
 	if (root->left == nullptr)
-		return root->data;
+		return root->key;
 	else
 	{
 		root = root->left;
@@ -161,4 +166,39 @@ void BSTree::PrintTree()
 	//prints the tree in Inorder
 	if (this->root != nullptr)
 		this->root->inorder();
+}
+
+BSTreeNode * BSTree::getRoot() const
+{
+	return this->root;
+}
+
+BSTreeNode * BSTree::FindK(BSTreeNode * node, int k)
+{
+	//this function recieve a tree node and return a k'ths node by ID value
+	if (node == nullptr)
+		return nullptr; // didn't find K'ths node
+	if (k > node->numOfSons + 1)
+		return nullptr;
+	int NleavesLeft = 0;
+	if (node->left != nullptr)
+		NleavesLeft = node->left->numOfSons+1;
+
+	if (k == NleavesLeft+1)
+	{
+		// found the node
+		return node;
+	}
+	if ( node->left==nullptr || NleavesLeft+1 < k)
+	{
+		if (node->left == nullptr)
+			FindK(node->right, k - 1);
+		else
+			FindK(node->right, k - NleavesLeft - 1);
+	}
+	else
+	{
+		FindK(node->left, k);
+	}
+
 }
