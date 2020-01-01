@@ -12,7 +12,7 @@ public:
 	BSTree(BSTreeNode * root) { this->root = root; };
 	~BSTree() { delete this->root; };
 	BSTreeNode * Find(Type item);
-	void Insert(KeyType key , DataType data);
+	void Insert(Person * pers);
 	void Delete(Type item);
 	void makeEmpty(BSTreeNode * root);
 	bool isEmpty();

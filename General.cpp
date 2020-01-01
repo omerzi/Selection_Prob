@@ -65,10 +65,10 @@ const Person & BST(Person * p_Arr[], int k,int n, int & NumComp)
 	BSTree tr;
 	for (int i = 0; i < n; i++)
 	{
-		tr.Insert(p_Arr[i]->getID(), p_Arr[i]->getName());
+		tr.Insert(p_Arr[i]);
 	}
 	BSTreeNode * node = tr.FindK(tr.getRoot(), k);
-
+	return *node->getData();
 }
 
 

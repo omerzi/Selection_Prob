@@ -1,13 +1,14 @@
 #include "BSTree.h"
 #include "BSTreeNode.h"
+#include "Person.h"
 BSTreeNode * BSTree::Find(Type item)
 { //find the node of by the type given
 	BSTreeNode * temp = this->root;
 	while (temp != nullptr)
 	{
-		if (item == temp->key)
+		if (item == temp->data->getID())
 			return temp;
-		else if (item < temp->key)
+		else if (item < temp->data->getID())
 			temp = temp->left;
 		else
 			temp = temp->right;
@@ -15,9 +16,9 @@ BSTreeNode * BSTree::Find(Type item)
 	return nullptr;
 }
 
-void BSTree::Insert(KeyType key, DataType data)
+void BSTree::Insert(Person * pers)
 {
-	if (this->Find(key) != nullptr)
+	if (this->Find(pers->getID()) != nullptr)
 	{
 		cout << "Error: key already exists" << endl;
 		return;
@@ -30,17 +31,17 @@ void BSTree::Insert(KeyType key, DataType data)
 	{
 		parent = temp;
 		parent->numOfSons++;
-		if (key < temp->key)
+		if (pers->getID() < temp->data->getID())
 		{
 			temp = temp->left;
 		}
 		else
 			temp = temp->right;
 	}
-	newnode = new BSTreeNode(key, data, 0,nullptr, nullptr);
+	newnode = new BSTreeNode(pers, 0,nullptr, nullptr);
 	if (parent == nullptr) // insert newnode as root
 		this->root = newnode;
-	else if (key < parent->key)
+	else if (pers->getID() < parent->data->getID())
 	{
 		parent->left = (newnode); //insert newnode as left child
 	}
@@ -85,7 +86,6 @@ void BSTree::Delete(Type item)
 	//two children:
 	BSTree childTree(child->left);
 	BSTreeNode* maxInChildTree = childTree.Max();
-	child->key = maxInChildTree->key;
 	child->data = maxInChildTree->data;
 	if (maxInChildTree->left == nullptr && maxInChildTree->right != nullptr)
 	{
@@ -127,11 +127,11 @@ BSTreeNode * BSTree::parentFind(Type item)
 	BSTreeNode * temp = this->root;
 	while (temp != nullptr)
 	{
-		if (item == temp->left->key)
+		if (item == temp->left->data->getID())
 			return temp;
-		else if (item == temp->right->key)
+		else if (item == temp->right->data->getID())
 			return temp;
-		else if (item < temp->key)
+		else if (item < temp->data->getID())
 			temp = temp->left;
 		else
 			temp = temp->right;
@@ -142,7 +142,7 @@ BSTreeNode * BSTree::parentFind(Type item)
 Type BSTree::Min()
 { //return the minimum value in the tree
 	if (root->left == nullptr)
-		return root->key;
+		return root->data->getID();
 	else
 	{
 		root = root->left;

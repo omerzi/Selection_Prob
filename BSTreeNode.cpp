@@ -3,9 +3,8 @@
 
 
 
-BSTreeNode::BSTreeNode(KeyType key, DataType data, int numOfSons, BSTreeNode * left, BSTreeNode * right)
+BSTreeNode::BSTreeNode(Person * data, int numOfSons, BSTreeNode * left, BSTreeNode * right)
 {
-	this->key = key;
 	this->data = data;
 	this->left = left;
 	this->right = right;
@@ -18,14 +17,9 @@ BSTreeNode::~BSTreeNode()
 	delete this->right;
 }
 
-const KeyType BSTreeNode::getKey() const
+Person * BSTreeNode::getData() const
 {
-	return this->key;
-}
-
-DataType BSTreeNode::getData() const
-{
-	return this->getData();
+	return this->data;
 }
 
 void BSTreeNode::inorder()
