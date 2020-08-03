@@ -1,8 +1,4 @@
 #include "BSTreeNode.h"
-
-
-
-
 BSTreeNode::BSTreeNode(Person * data, int numOfSons, BSTreeNode * left, BSTreeNode * right)
 {
 	this->data = data;
